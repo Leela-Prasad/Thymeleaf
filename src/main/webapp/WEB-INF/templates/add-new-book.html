@@ -1,0 +1,31 @@
+<html xmlns:th="http://www.thymeleaf.org" th:include="layouts/StandardLayout :: layout(title='Add New Book')">
+
+   <body>
+	 
+	  <div id="addBook" th:fragment="content1">
+		  <form th:action="@{/addNewBook.do}" th:method="POST" th:object="${book}">
+	         <label>Enter ISBN</label><input type="text" th:field="*{isbn}" />	  
+	                                  <div th:errors="*{isbn}" class="error"></div>
+	                    
+	         <label>Enter Title</label> <input type="text" th:field="*{title}" />	  
+	                                  	<div th:errors="*{title}" class="error"></div>
+	         	
+	         <label>Enter Author</label><input type="text" th:field="*{author}" />	  
+	                                  	<div th:errors="*{author}" class="error"></div>
+	           
+	         <label>Enter Category</label> <select th:field="*{category}">
+	         									<option th:each="category : ${book.allCategories}" th:value="${category.key}" th:text="${category.value}" />
+	         							   </select>
+	         							   <div th:errors ="*{category}" class="error"></div>
+	         							     
+	    	 <div class="clearBoth"></div>
+	         <label>Enter Price</label><input type="text" th:field="*{price}" />	  
+	                                  	<div th:errors="*{price}" class="error"></div>
+	
+	         <input type="submit" value="Add New Book"/>
+	      </form>		   	  
+      </div>
+            
+      <div th:fragment="content2"></div>
+   </body>
+</html>

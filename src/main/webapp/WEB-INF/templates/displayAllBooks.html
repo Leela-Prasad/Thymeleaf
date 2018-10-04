@@ -1,0 +1,29 @@
+<html xmlns:th="http://www.thymeleaf.org" th:include="layouts/StandardLayout :: layout(title='View All Books',since='2018')">
+  
+<body>
+	
+	<div id="books" th:fragment="content1">
+		<ul >
+			<li th:each="nextBook : ${allBooks}">
+				<h2 th:text="${nextBook.title}">Title</h2>
+				<p>
+					by <span th:text="${nextBook.author}">author</span>
+					  $	<span th:text="${#numbers.formatDecimal(nextBook.price,3,2,'COMMA')}">price</span>
+					
+					
+					<form method='post' th:action="@{addToCart.do}" action='addToCart.do'>
+						<input type='hidden' name='id' th:value="${nextBook.id}" value='${nextBook.id}'/>
+						<input type='image' th:src="@{/cart-button.png}" src='cart-button.png'/>
+				    </form>
+				
+				</p>
+				
+			</li>
+		</ul>
+	</div>
+	
+	<div th:fragment="content2"></div>	
+	
+</body>
+
+</html>

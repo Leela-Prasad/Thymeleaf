@@ -1,0 +1,16 @@
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout(title)">
+
+<head>
+	<title th:text="${title}">Title</title>
+	<link th:href="@{/styles.css}" href="/styles.css" rel="Stylesheet" type="text/css"/>
+</head>
+
+<body>
+	<div th:replace="templates/fragments/header :: links">Header</div>
+	
+	<div th:replace="this :: content1">Content1</div>
+	<div th:replace="this :: content2">Content2</div>
+	
+	<div th:replace="templates/fragments/footer :: footer">Footer</div>
+</body>
+</html>
