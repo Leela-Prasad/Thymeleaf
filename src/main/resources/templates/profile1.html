@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" href="main.css" />
+</head>
+<body>
+	<h1>User Profile</h1>
+	<table>
+		<tr>
+			<td class="title">Full name</td>
+			<!-- <td th:text="${title} + ' ' + ${firstName} + ' ' + ${surName}">Miss Jane Green</td> -->
+			<td th:text="|${title} ${firstName} ${surName}|">Miss Jane Green</td>
+		</tr>
+		<tr>
+			<td class="title">Date of Birth</td>
+			<td>17-JAN-1946</td>
+		</tr>
+		<tr>
+			<td class="title">Description</td>
+			<td>Description goes here</td>
+		</tr>
+	</table>
+</body>
+</html>

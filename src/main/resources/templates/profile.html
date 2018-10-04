@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" href="main.css" th:href="@{css/main.css}" />
+</head>
+<body th:with="fullName=${model.title} + ' ' + ${model.firstName} + ' ' + ${#strings.toUpperCase(model.surName)}">
+	
+	<div th:replace="fragments/menu :: header-menu">Main menu goes here</div>
+	<h1>User Profile</h1>
+	<table>
+		<tr>
+			<td class="title">Full name</td>
+			<!-- <td th:text="${model.get('firstName')}">Miss Jane Green</td> -->
+			<!-- <td th:text="${model.title} + ' ' + ${model.firstName} + ' ' + ${model.surName}">Miss Jane Green</td> -->
+			<!-- <td th:text="${model.title + ' ' + model.firstName + ' ' + model.surName}">Miss Jane Green</td> -->
+			<td th:text="|You Name : ${model.title} ${model.firstName} ${#strings.toUpperCase(model.surName)}|">Miss Jane Green</td>
+		</tr>
+		<tr>
+			<td class="title">Date of Birth</td>
+			<td th:text="${#dates.format(model.dob,'dd-MMM-yyyy')}">17-JAN-1946</td>
+		</tr>
+		<tr>
+			<td class="title">Description</td>
+			<td th:utext="${model.description}">Description goes here</td>
+		</tr>
+	</table>
+	
+	<p th:text="'Your Name : ' + ${fullName}" style="color:#0f0" th:style="'color:' + ${model.color}">Name</p>
+	<img src="asterisk-guy.jpg" th:src="@{images/asterisk-guy.jpg}"/>
+	
+	<h2>Languages Spoken</h2>
+	<p>You speak <span th:text="(${model.languages.size() ge 3}) ? '3 or more' : ${model.languages.size()}">x</span> Languages</p>
+	
+	<ul th:if="${model.languages.size() ge 3}">
+		<li th:each="language : ${model.languages}" th:text="${language}">language</li>
+	</ul> 
+	
+	<p th:if="${model.languages.size() lt 3} AND ${isAdmin}">You Speak <span th:each="language : ${model.languages}" th:text="${language} + ' '">language</span></p>
+	<p><a th:href=@{/} href="homepage.html">Click Here</a> to go back to Home Page</p>
+	
+	<div th:replace="fragments/menu :: footer-menu">footer menu goes here</div>
+</body>
+</html>
